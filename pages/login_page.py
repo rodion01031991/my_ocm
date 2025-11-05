@@ -6,7 +6,7 @@ class LoginPage(Page):
         self.username_input = page.locator('#loginform-username')
         self.password_input = page.locator('#loginform-password')
         self.login_button = page.locator('#idx_login')
-        self.error_message = page.locator('.error-page-field')
+        self.error_message = page.locator('.error-page-field:has-text("Неверный логин или пароль")')
 
 
     def open_login_page(self):

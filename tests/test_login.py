@@ -1,13 +1,13 @@
 import pytest
 
 
-def test_login_fails(login_page):
+def test_login_fail(login_page):
     login_page.open_login_page()
-    login_page.lodin('user', 'password')
+    login_page.login('user', 'password')
     assert login_page.get_error_message() == 'Неверный логин или пароль'
 
 
-@pytest.fixture('username, password', [
+@pytest.mark.parametrize('username, password', [
     ('user', 'password'),
     ('user', 'password')
 ])
