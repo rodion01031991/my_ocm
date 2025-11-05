@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8862a8b-7d20-41cb-bb31-81b0c8618e2e" name="Changes" comment="update projectOCM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +61,7 @@
       <recent name="C:\Users\rchernyshov\PycharmProjects\PythonProjectOCM" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.test_login.test_login_fail">
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_login.test_login_success">
     <configuration name="Python tests for tests.test_login.test_login_fail" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
@@ -111,8 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests.test_login.test_login_fail" />
         <item itemvalue="Python tests.Python tests for tests.test_login.test_login_success" />
+        <item itemvalue="Python tests.Python tests for tests.test_login.test_login_fail" />
         <item itemvalue="Python tests.Python tests for tests.test_login.test_login_fails" />
       </list>
     </recent_temporary>
@@ -164,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762344053840</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update projectOCM">
+      <option name="closed" value="true" />
+      <created>1762344988124</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762344988124</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
