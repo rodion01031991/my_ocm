@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8862a8b-7d20-41cb-bb31-81b0c8618e2e" name="Changes" comment="update projectOCM">
+    <list default="true" id="d8862a8b-7d20-41cb-bb31-81b0c8618e2e" name="Changes" comment="add requirements.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,12 +179,37 @@
       <option name="project" value="LOCAL" />
       <updated>1762346402213</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add requirements.txt">
+      <option name="closed" value="true" />
+      <created>1764315651541</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764315651541</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add requirements.txt">
+      <option name="closed" value="true" />
+      <created>1764315767208</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1764315767208</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add requirements.txt">
+      <option name="closed" value="true" />
+      <created>1764315776000</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764315776000</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New projectOCM" />
     <MESSAGE value="update projectOCM" />
-    <option name="LAST_COMMIT_MESSAGE" value="update projectOCM" />
+    <MESSAGE value="add requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="add requirements.txt" />
   </component>
 </project>
