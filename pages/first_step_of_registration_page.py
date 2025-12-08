@@ -16,8 +16,8 @@ class FirstStepOfRegistrationPage(Page):
         #Чекбокс 'Нет отчества по паспорту'
         self.no_middle_name_checkbox = page.locator('label[for="usermodel-isnomiddlename"]')
         #Радиобаттоны пола
-        self.man_gender_radiobaton = page.locator('#usermodel-gender-key_1')
-        self.woman_gender_radiobaton = page.locator('#usermodel-gender-key_2')
+        self.man_gender_radiobaton = page.locator('label[for="usermodel-gender-key_1"]')
+        self.woman_gender_radiobaton = page.locator('label[for="usermodel-gender-key_2"]')
         #Сообщения об ошибках
         self.error_message_wrong_language = page.locator('.error-page-field:has-text("Используйте только русские буквы и тире (допускается два слова через пробел")')
         self.error_message_surname = page.locator('.error-page-field:has-text("Необходимо заполнить «Фамилия».")')
@@ -75,6 +75,26 @@ class FirstStepOfRegistrationPage(Page):
     # Кликнуть на чекбокс 'Нет отчества по паспорту'
     def click_no_middle_name_checkbox(self):
         self.no_middle_name_checkbox.click()
+
+
+    #Кликнуть на радиобатон 'Женщина'
+    def select_woman_gender_radiobaton(self):
+        self.woman_gender_radiobaton.click()
+        return self
+
+    #Проверить выбран ли женский пол
+    def is_woman_gender_selected(self) -> bool:
+        return self.woman_gender_radiobaton.is_checked()
+
+
+    # Кликнуть на радиобатон 'Мужчина'
+    def select_man_gender_radiobaton(self):
+        self.man_gender_radiobaton.click()
+        return self
+
+    # Проверить выбран ли мужской пол
+    def is_man_gender_selected(self) -> bool:
+        return self.man_gender_radiobaton.is_checked()
 
     #Очистка всех полей
     """def clear_field(self, field_name: str):

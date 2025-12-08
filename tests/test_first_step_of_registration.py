@@ -64,7 +64,6 @@ def test_no_middle_name_checkbox (page: Page):
 @allure.title("Проверка поля 'Фамилия' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
 def test_surname_input(page: Page):
-    from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 
@@ -101,6 +100,7 @@ def test_surname_input(page: Page):
             if expected_error is None:
                 # Ошибки быть не должно
                 expect(first_step_of_registration_page.error_message_wrong_language).not_to_be_visible()
+                expect(first_step_of_registration_page.error_message_surname).not_to_be_visible()
 
 
             else:
@@ -138,7 +138,6 @@ def test_surname_input(page: Page):
 @allure.title("Проверка поля 'Имя' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
 def test_name_input(page: Page):
-    from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 
@@ -175,6 +174,7 @@ def test_name_input(page: Page):
             if expected_error is None:
                 # Ошибки быть не должно
                 expect(first_step_of_registration_page.error_message_wrong_language).not_to_be_visible()
+                expect(first_step_of_registration_page.error_message_name).not_to_be_visible()
 
 
             else:
@@ -212,7 +212,6 @@ def test_name_input(page: Page):
 @allure.title("Проверка поля 'Отчество' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
 def test_middle_name_input(page: Page):
-    from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 
@@ -249,6 +248,7 @@ def test_middle_name_input(page: Page):
             if expected_error is None:
                 # Ошибки быть не должно
                 expect(first_step_of_registration_page.error_message_wrong_language).not_to_be_visible()
+                expect(first_step_of_registration_page.error_message_middle_name).not_to_be_visible()
 
 
             else:
@@ -276,3 +276,129 @@ def test_middle_name_input(page: Page):
                 assert expected_error in actual_error, \
  \
                     f'Текст ошибки не совпадает. Ожидалось: "{expected_error}", получено: "{actual_error}"'
+
+
+
+#Проверка поля 'Дата рождения' на Шаге 1
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка поля 'Дата рождения' на Шаге 1")
+@allure.severity(allure.severity_level.NORMAL)
+def test_middle_name_input(page: Page):
+
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+
+    # Тестовые данные и ожидаемые результаты
+    test_cases = [
+        # (фамилия, ожидаемая_ошибка, описание)
+        ('01.08.2000', None, 'Полная дата - валидно'),
+        ('ДатаРожд', 'Необходимо заполнить «Дата рождения».',
+         'Кирилица - невалидно/ввод заблокирован'),
+        ('DataRojd', 'Необходимо заполнить «Дата рождения».', 'Латиница - невалидно/ввод заблокирован'),
+        ('#$%#@', 'Необходимо заполнить «Дата рождения».',
+         'Спецсимвол - невалидно/ввод заблокирован'),
+        ('05.01.20', 'Неправильный формат даты', 'Не полная дата - невалидно'),
+        ('', 'Необходимо заполнить «Дата рождения».', 'Пустое поле - невалидно'),
+    ]
+
+    for date_of_birth, expected_error, description in test_cases:
+        with allure.step(f'Проверка: {description} (ввод: "{date_of_birth}")'):
+            # Очистить поле
+            first_step_of_registration_page.date_of_birth_input.clear()
+
+            # Ввести значение
+            if date_of_birth:
+                first_step_of_registration_page.date_of_birth_input.fill(date_of_birth)
+
+            # Убрать фокус для триггера валидации
+            first_step_of_registration_page.surname_input.click()
+            page.wait_for_timeout(300)
+
+            # Проверить наличие/отсутствие ошибки
+            if expected_error is None:
+                # Ошибки быть не должно
+                expect(first_step_of_registration_page.error_message_date_of_birth).not_to_be_visible()
+                expect(first_step_of_registration_page.error_message_incorrect_format_date_of_birth).not_to_be_visible()
+
+
+            else:
+
+                # Определяем, какой тип ошибки ожидается
+
+                if 'Неправильный формат даты' in expected_error:
+
+                    # Это ошибка Неправильный формат даты
+
+                    expect(first_step_of_registration_page.error_message_incorrect_format_date_of_birth).to_be_visible()
+
+                    actual_error = first_step_of_registration_page.error_message_incorrect_format_date_of_birth.text_content()
+
+                else:
+
+                    # Это ошибка о необходимости заполнить Дату рождения
+
+                    expect(first_step_of_registration_page.error_message_date_of_birth).to_be_visible()
+
+                    expect(first_step_of_registration_page.date_of_birth_input).to_be_empty()
+
+                    actual_error = first_step_of_registration_page.error_message_date_of_birth.text_content()
+
+                # Проверить текст ошибки
+
+                assert expected_error in actual_error, \
+ \
+                    f'Текст ошибки не совпадает. Ожидалось: "{expected_error}", получено: "{actual_error}"'
+
+#Проверка радиобатон Женщина на первом шаги регистрации
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Выбор пола на первом шаге регистрации")
+@allure.title("Выбор женского пола в форме регистрации")
+@allure.severity(allure.severity_level.NORMAL)
+def test_select_female_gender(page: Page):
+
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+
+    # Шаг 1: Открыть страницу регистрации
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+
+    # Шаг 2: Кликнуть на радиобатон "Женщина"
+    with allure.step("Кликнуть на радиобатон 'Женщина'"):
+        first_step_of_registration_page.select_woman_gender_radiobaton()
+
+    # Шаг 3: Проверить активацию радиобатона
+    with allure.step("Проверить что радиобатон 'Женщина' активирован"):
+        first_step_of_registration_page.is_woman_gender_selected()
+
+
+
+#Проверка радиобатон Мужчина на первом шаги регистрации
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Выбор пола на первом шаге регистрации")
+@allure.title("Выбор мужского пола в форме регистрации")
+@allure.severity(allure.severity_level.NORMAL)
+def test_select_female_gender(page: Page):
+
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+
+    # Шаг 1: Открыть страницу регистрации
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+
+    # Шаг 2: Кликнуть на радиобатон "Женщина"
+    with allure.step("Кликнуть на радиобатон 'Женщина'"):
+        first_step_of_registration_page.select_woman_gender_radiobaton()
+
+    # Шаг 3: Кликнуть на радиобатон "Мужчина"
+    with allure.step("Кликнуть на радиобатон 'Мужчина'"):
+        first_step_of_registration_page.select_man_gender_radiobaton()
+
+    # Шаг 4: Проверить активацию радиобатона
+    with allure.step("Проверить что радиобатон 'Мужчина' активирован"):
+        first_step_of_registration_page.is_man_gender_selected()
