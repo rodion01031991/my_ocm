@@ -66,15 +66,14 @@ def test_no_middle_name_checkbox (page: Page):
 def test_surname_input(page: Page):
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
-
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
 
     # Тестовые данные и ожидаемые результаты
     test_cases = [
         # (фамилия, ожидаемая_ошибка, описание)
-        ('Иванов', None, 'Кириллица - валидно'),
-        ('Ivanov', 'Используйте только русские буквы и тире (допускается два слова через пробел',
+        (first_step_of_registration_page.fake_ru.first_name(), None, 'Кириллица - валидно'),
+        (first_step_of_registration_page.fake_en.first_name(), 'Используйте только русские буквы и тире (допускается два слова через пробел',
          'Латиница - невалидно'),
         ('123', 'Используйте только русские буквы и тире (допускается два слова через пробел', 'Цифры - невалидно'),
         ('Ив@нов', 'Используйте только русские буквы и тире (допускается два слова через пробел',
@@ -93,7 +92,7 @@ def test_surname_input(page: Page):
                 first_step_of_registration_page.surname_input.fill(surname)
 
             # Убрать фокус для триггера валидации
-            first_step_of_registration_page.name_input.click()
+            first_step_of_registration_page.first_name_input.click()
             page.wait_for_timeout(300)
 
             # Проверить наличие/отсутствие ошибки
@@ -160,11 +159,11 @@ def test_name_input(page: Page):
     for name, expected_error, description in test_cases:
         with allure.step(f'Проверка: {description} (ввод: "{name}")'):
             # Очистить поле
-            first_step_of_registration_page.name_input.clear()
+            first_step_of_registration_page.first_name_input.clear()
 
             # Ввести значение
             if name:
-                first_step_of_registration_page.name_input.fill(name)
+                first_step_of_registration_page.first_name_input.fill(name)
 
             # Убрать фокус для триггера валидации
             first_step_of_registration_page.surname_input.click()
@@ -285,7 +284,7 @@ def test_middle_name_input(page: Page):
 @allure.story("Проверка валидации первой страницы регистрации")
 @allure.title("Проверка поля 'Дата рождения' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
-def test_middle_name_input(page: Page):
+def test_date_of_birth_input(page: Page):
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 
@@ -359,7 +358,7 @@ def test_middle_name_input(page: Page):
 @allure.story("Выбор пола на первом шаге регистрации")
 @allure.title("Выбор женского пола в форме регистрации")
 @allure.severity(allure.severity_level.NORMAL)
-def test_select_female_gender(page: Page):
+def test_select_woman_gender(page: Page):
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 
@@ -383,7 +382,7 @@ def test_select_female_gender(page: Page):
 @allure.story("Выбор пола на первом шаге регистрации")
 @allure.title("Выбор мужского пола в форме регистрации")
 @allure.severity(allure.severity_level.NORMAL)
-def test_select_female_gender(page: Page):
+def test_select_man_gender(page: Page):
 
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
 

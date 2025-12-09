@@ -1,12 +1,15 @@
 from playwright.sync_api import Page, expect
+from faker import Faker
 
 class FirstStepOfRegistrationPage(Page):
     BASE_URL = 'https://rc.dev.oneclickmoney.ru/registration/first/?Resident'
+    fake_ru = Faker('ru_RU')
+    fake_en = Faker('en_US')
     def __init__(self, page: Page):
         self.page = page
         #Поля ввода
         self.surname_input = page.locator('#usermodel-last_name')
-        self.name_input = page.locator('#usermodel-first_name')
+        self.first_name_input = page.locator('#usermodel-first_name')
         self.middle_name_input = page.locator('#usermodel-middle_name')
         self.date_of_birth_input = page.locator('#usermodel-birth_date')
         self.mobile_phone_input = page.locator('#usermodel-mobile_phone')
@@ -51,7 +54,8 @@ class FirstStepOfRegistrationPage(Page):
     #Проверить, что все поля формы пустые
     def verify_all_fields_are_empty(self):
         expect(self.surname_input).to_be_empty()
-        expect(self.name_input).to_be_empty()
+        expect(self.first_name_input).to_be_empty()
+        expect(self.middle_name_input).to_be_empty()
         expect(self.date_of_birth_input).to_be_empty()
         expect(self.mobile_phone_input).to_be_empty()
         expect(self.email_input).to_be_empty()

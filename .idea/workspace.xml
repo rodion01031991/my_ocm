@@ -7,6 +7,7 @@
     <list default="true" id="d8862a8b-7d20-41cb-bb31-81b0c8618e2e" name="Changes" comment="Добавил тесты для первой страницы регистрации">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/first_step_of_registration_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/first_step_of_registration_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_first_step_of_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_first_step_of_registration.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +53,7 @@
     "Python tests.Python tests for tests.test_first_step_of_registration.test_name_input.executor": "Run",
     "Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox.executor": "Run",
     "Python tests.Python tests for tests.test_first_step_of_registration.test_select_female_gender.executor": "Run",
+    "Python tests.Python tests for tests.test_first_step_of_registration.test_select_woman_gender.executor": "Run",
     "Python tests.Python tests for tests.test_first_step_of_registration.test_surname_input.executor": "Run",
     "Python tests.Python tests for tests.test_first_step_of_registration.test_surname_minimal.executor": "Run",
     "Python tests.Python tests for tests.test_login.test_login_fail.executor": "Run",
@@ -69,7 +71,22 @@
       <recent name="C:\Users\rchernyshov\PycharmProjects\PythonProjectOCM" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_select_female_gender">
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_date_of_birth_input">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_date_of_birth_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PythonProjectOCM" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_date_of_birth_input&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for tests.test_first_step_of_registration.test_empty_fields_simple" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
@@ -82,36 +99,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_empty_fields_simple&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_middle_name_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PythonProjectOCM" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_middle_name_input&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PythonProjectOCM" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_no_middle_name_checkbox&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -130,7 +117,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_surname_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_select_man_gender" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,16 +128,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_surname_input&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_select_man_gender&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_select_woman_gender" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PythonProjectOCM" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_select_woman_gender&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_date_of_birth_input" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_select_man_gender" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_select_woman_gender" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_select_female_gender" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_middle_name_input" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_surname_input" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_empty_fields_simple" />
       </list>
     </recent_temporary>
@@ -258,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764846455903</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Добавил тесты для первой страницы регистрации">
+      <option name="closed" value="true" />
+      <created>1765183754980</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1765183754980</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
