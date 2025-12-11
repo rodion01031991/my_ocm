@@ -11,27 +11,20 @@ from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
 @allure.severity(allure.severity_level.CRITICAL)
 def test_empty_fields_simple(page: Page):
     """Проверка обязательных полей на Шаге 1 при отправке пустой формы"""
-
     # 1. Подготовка
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
-
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
-
     initial_url = page.url
-
     # 2. Проверка что поля пустые
     with allure.step('Проверка что поля пустые'):
         first_step_of_registration_page.verify_all_fields_are_empty()
-
     # 3. Действие
     with allure.step('Нажать на кнопку далее'):
         first_step_of_registration_page.click_next_step_button()
-
     # 4. Проверка 1: Не было перехода
     with allure.step('Проверка url страницы'):
         expect(page).to_have_url(initial_url)
-
     # 5. Проверка 2: Все ошибки отображаются
     with allure.step('Проверка что все ошибки отображаются'):
         first_step_of_registration_page.verify_all_error_messages_visible()
@@ -64,66 +57,37 @@ def test_no_middle_name_checkbox (page: Page):
 @allure.title("Проверка поля 'Фамилия' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
 def test_surname_input(page: Page):
-
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
-
-    # Тестовые данные и ожидаемые результаты
-    test_cases = [
-        # (фамилия, ожидаемая_ошибка, описание)
-        (first_step_of_registration_page.fake_ru.first_name(), None, 'Кириллица - валидно'),
-        (first_step_of_registration_page.fake_en.first_name(), 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Латиница - невалидно'),
-        ('123', 'Используйте только русские буквы и тире (допускается два слова через пробел', 'Цифры - невалидно'),
-        ('Ив@нов', 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Спецсимвол - невалидно'),
-        ('', 'Необходимо заполнить «Фамилия».', 'Пустое поле - невалидно'),
-        ('Иванов-Петров', None, 'Двойная фамилия с дефисом - валидно'),
-    ]
-
+    # Получаем тестовые кейсы
+    with allure.step('Получаем тестовые кейсы'):
+        test_cases = first_step_of_registration_page.get_test_cases_surname()
     for surname, expected_error, description in test_cases:
         with allure.step(f'Проверка: {description} (ввод: "{surname}")'):
             # Очистить поле
             first_step_of_registration_page.surname_input.clear()
-
             # Ввести значение
             if surname:
                 first_step_of_registration_page.surname_input.fill(surname)
-
-            # Убрать фокус для триггера валидации
-            first_step_of_registration_page.first_name_input.click()
-            page.wait_for_timeout(300)
-
+            # Убрать фокус
+            first_step_of_registration_page.trigger_validation()
             # Проверить наличие/отсутствие ошибки
             if expected_error is None:
                 # Ошибки быть не должно
                 expect(first_step_of_registration_page.error_message_wrong_language).not_to_be_visible()
                 expect(first_step_of_registration_page.error_message_surname).not_to_be_visible()
-
-
             else:
-
                 # Определяем, какой тип ошибки ожидается
-
                 if 'Необходимо заполнить «Фамилия».' in expected_error:
-
                     # Это ошибка пустого поля
-
                     expect(first_step_of_registration_page.error_message_surname).to_be_visible()
-
                     actual_error = first_step_of_registration_page.error_message_surname.text_content()
-
                 else:
-
                     # Это ошибка о языке/символах
-
                     expect(first_step_of_registration_page.error_message_wrong_language).to_be_visible()
-
                     actual_error = first_step_of_registration_page.error_message_wrong_language.text_content()
-
                 # Проверить текст ошибки
-
                 assert expected_error in actual_error, \
  \
                     f'Текст ошибки не совпадает. Ожидалось: "{expected_error}", получено: "{actual_error}"'
@@ -143,18 +107,9 @@ def test_name_input(page: Page):
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
 
-    # Тестовые данные и ожидаемые результаты
-    test_cases = [
-        # (фамилия, ожидаемая_ошибка, описание)
-        ('Иван', None, 'Кириллица - валидно'),
-        ('Ivan', 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Латиница - невалидно'),
-        ('123', 'Используйте только русские буквы и тире (допускается два слова через пробел', 'Цифры - невалидно'),
-        ('Ив@н', 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Спецсимвол - невалидно'),
-        ('', 'Необходимо заполнить «Имя».', 'Пустое поле - невалидно'),
-        ('Иван-Ваня', None, 'Двойное имя с дефисом - валидно'),
-    ]
+    # Получаем тестовые кейсы
+    with allure.step('Получаем тестовые кейсы'):
+        test_cases = first_step_of_registration_page.get_test_cases_first_name()
 
     for name, expected_error, description in test_cases:
         with allure.step(f'Проверка: {description} (ввод: "{name}")'):
@@ -166,8 +121,7 @@ def test_name_input(page: Page):
                 first_step_of_registration_page.first_name_input.fill(name)
 
             # Убрать фокус для триггера валидации
-            first_step_of_registration_page.surname_input.click()
-            page.wait_for_timeout(300)
+            first_step_of_registration_page.trigger_validation()
 
             # Проверить наличие/отсутствие ошибки
             if expected_error is None:
@@ -217,18 +171,9 @@ def test_middle_name_input(page: Page):
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
 
-    # Тестовые данные и ожидаемые результаты
-    test_cases = [
-        # (фамилия, ожидаемая_ошибка, описание)
-        ('Иванович', None, 'Кириллица - валидно'),
-        ('Ivanovich', 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Латиница - невалидно'),
-        ('123', 'Используйте только русские буквы и тире (допускается два слова через пробел', 'Цифры - невалидно'),
-        ('Ив@нович', 'Используйте только русские буквы и тире (допускается два слова через пробел',
-         'Спецсимвол - невалидно'),
-        ('', 'В случае отсутствия установите «Нет отчества как в паспорте»', 'Пустое поле - невалидно'),
-        ('Иванович-Петрович', None, 'Двойное отчество с дефисом - валидно'),
-    ]
+        # Получаем тестовые кейсы
+        with allure.step('Получаем тестовые кейсы'):
+            test_cases = first_step_of_registration_page.get_test_cases_middle_name()
 
     for middle_name, expected_error, description in test_cases:
         with allure.step(f'Проверка: {description} (ввод: "{middle_name}")'):
@@ -240,8 +185,7 @@ def test_middle_name_input(page: Page):
                 first_step_of_registration_page.middle_name_input.fill(middle_name)
 
             # Убрать фокус для триггера валидации
-            first_step_of_registration_page.surname_input.click()
-            page.wait_for_timeout(300)
+            first_step_of_registration_page.trigger_validation()
 
             # Проверить наличие/отсутствие ошибки
             if expected_error is None:
@@ -291,18 +235,9 @@ def test_date_of_birth_input(page: Page):
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
 
-    # Тестовые данные и ожидаемые результаты
-    test_cases = [
-        # (фамилия, ожидаемая_ошибка, описание)
-        ('01.08.2000', None, 'Полная дата - валидно'),
-        ('ДатаРожд', 'Необходимо заполнить «Дата рождения».',
-         'Кирилица - невалидно/ввод заблокирован'),
-        ('DataRojd', 'Необходимо заполнить «Дата рождения».', 'Латиница - невалидно/ввод заблокирован'),
-        ('#$%#@', 'Необходимо заполнить «Дата рождения».',
-         'Спецсимвол - невалидно/ввод заблокирован'),
-        ('05.01.20', 'Неправильный формат даты', 'Не полная дата - невалидно'),
-        ('', 'Необходимо заполнить «Дата рождения».', 'Пустое поле - невалидно'),
-    ]
+        # Получаем тестовые кейсы
+        with allure.step('Получаем тестовые кейсы'):
+            test_cases = first_step_of_registration_page.get_test_cases_date_of_birth()
 
     for date_of_birth, expected_error, description in test_cases:
         with allure.step(f'Проверка: {description} (ввод: "{date_of_birth}")'):
@@ -314,8 +249,7 @@ def test_date_of_birth_input(page: Page):
                 first_step_of_registration_page.date_of_birth_input.fill(date_of_birth)
 
             # Убрать фокус для триггера валидации
-            first_step_of_registration_page.surname_input.click()
-            page.wait_for_timeout(300)
+            first_step_of_registration_page.trigger_validation()
 
             # Проверить наличие/отсутствие ошибки
             if expected_error is None:
@@ -359,17 +293,13 @@ def test_date_of_birth_input(page: Page):
 @allure.title("Выбор женского пола в форме регистрации")
 @allure.severity(allure.severity_level.NORMAL)
 def test_select_woman_gender(page: Page):
-
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
-
     # Шаг 1: Открыть страницу регистрации
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
-
     # Шаг 2: Кликнуть на радиобатон "Женщина"
     with allure.step("Кликнуть на радиобатон 'Женщина'"):
         first_step_of_registration_page.select_woman_gender_radiobaton()
-
     # Шаг 3: Проверить активацию радиобатона
     with allure.step("Проверить что радиобатон 'Женщина' активирован"):
         first_step_of_registration_page.is_woman_gender_selected()
@@ -383,21 +313,61 @@ def test_select_woman_gender(page: Page):
 @allure.title("Выбор мужского пола в форме регистрации")
 @allure.severity(allure.severity_level.NORMAL)
 def test_select_man_gender(page: Page):
-
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
-
     # Шаг 1: Открыть страницу регистрации
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
-
     # Шаг 2: Кликнуть на радиобатон "Женщина"
     with allure.step("Кликнуть на радиобатон 'Женщина'"):
         first_step_of_registration_page.select_woman_gender_radiobaton()
-
     # Шаг 3: Кликнуть на радиобатон "Мужчина"
     with allure.step("Кликнуть на радиобатон 'Мужчина'"):
         first_step_of_registration_page.select_man_gender_radiobaton()
-
     # Шаг 4: Проверить активацию радиобатона
     with allure.step("Проверить что радиобатон 'Мужчина' активирован"):
         first_step_of_registration_page.is_man_gender_selected()
+
+
+#Проверка поля 'Мобильный телефон' на Шаге 1
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка поля 'Мобильный телефон' на Шаге 1")
+@allure.severity(allure.severity_level.NORMAL)
+def test_mobile_phone_input(page: Page):
+
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+
+        # Получаем тестовые кейсы
+        with allure.step('Получаем тестовые кейсы'):
+            test_cases = first_step_of_registration_page.get_test_cases_mobile_phone()
+
+    for mobile_phone, expected_error, description in test_cases:
+        with allure.step(f'Проверка: {description} (ввод: "{mobile_phone}")'):
+            # Очистить поле
+            first_step_of_registration_page.mobile_phone_input.clear()
+
+            # Ввести значение
+            if mobile_phone:
+                first_step_of_registration_page.mobile_phone_input.fill(mobile_phone)
+
+            # Убрать фокус для триггера валидации
+            first_step_of_registration_page.trigger_validation()
+
+            # Проверить форматированиеи и отсутсвие ошибки
+            actual_formatted = first_step_of_registration_page.mobile_phone_input.input_value()
+            if expected_error == '+7 (999) 123-45-67':
+                # Ошибки быть не должно
+                assert actual_formatted == expected_error
+                expect(first_step_of_registration_page.error_message_mobile_phone_format).not_to_be_visible()
+            else:
+                expect(first_step_of_registration_page.error_message_mobile_phone_format).to_be_visible()
+                actual_error = first_step_of_registration_page.error_message_mobile_phone_format.text_content()
+
+                # Проверить текст ошибки
+                assert expected_error in actual_error, \
+ \
+                    f'Текст ошибки не совпадает. Ожидалось: "{expected_error}", получено: "{actual_error}"'
