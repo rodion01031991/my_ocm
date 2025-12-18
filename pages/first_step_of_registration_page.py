@@ -1,10 +1,11 @@
 from playwright.sync_api import Page, expect
 from faker import Faker
+fake_ru = Faker('ru_RU')
+fake_en = Faker('en_US')
 
 class FirstStepOfRegistrationPage(Page):
-    BASE_URL = 'https://rc.dev.oneclickmoney.ru/registration/first/?Resident'
-    fake_ru = Faker('ru_RU')
-    fake_en = Faker('en_US')
+    URL_FIRST_STEP = 'https://rc.dev.oneclickmoney.ru/registration/first/?Resident'
+    URL_SECOND_STEP = 'https://rc.dev.oneclickmoney.ru/registration/second/'
     def __init__(self, page: Page):
         self.page = page
         #Поля ввода
@@ -37,13 +38,15 @@ class FirstStepOfRegistrationPage(Page):
         self.error_message_small_password = page.locator('.error-page-field:has-text("Значение «Пароль» должно содержать минимум 6 символов.")')
         self.error_message_small_repeat_the_password = page.locator('.error-page-field:has-text("Значение «Повторите пароль» должно содержать минимум 6 символов.")')
         self.error_message_dont_match_password = page.locator('.error-page-field:has-text("Пароли должны совпадать")')
+        self.error_message_phone_is_already_registered_in_the_system = page.locator('.error-page-field:has-text("Пользователь с таким мобильным телефоном уже зарегистрирован. Войдите в личный кабинет.")')
+        self.error_message_email_is_already_registered_in_the_system = page.locator('.error-page-field:has-text("Пользователь с таким email уже зарегистрирован. Войдите в личный кабинет.")')
         #Кнопка дальше
         self.next_step_button = page.locator('#next-step-button')
 
 
     #Открыть первый шаг страницы регистрации
     def open_first_step_of_registration(self):
-        self.page.goto(self.BASE_URL)
+        self.page.goto(self.URL_FIRST_STEP)
 
 
     #Нажать кнопку 'Далее'
@@ -136,7 +139,6 @@ class FirstStepOfRegistrationPage(Page):
     # Убрать фокус для триггера валидации
     def trigger_validation(self):
         """Снять фокус с поля для триггера валидации"""
-
         # Проверяем активно ли поле "Имя"
         if self.first_name_input.evaluate('element => document.activeElement === element'):
             # Если поле Имя активно, кликаем на поле Фамилия
@@ -144,7 +146,6 @@ class FirstStepOfRegistrationPage(Page):
         else:
             # Если поле Имя не активно, кликаем на него
             self.first_name_input.click()
-
         # Задержка для срабатывания валидации
         self.page.wait_for_timeout(300)
 
@@ -213,5 +214,43 @@ class FirstStepOfRegistrationPage(Page):
             ('Абвгд', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Кириллица - невалидно/ввод заблокирован'),
             ('Latin', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Латиница - невалидно/ввод заблокирован'),
             ('$@%&#@', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Спецсимвол - невалидно/ввод заблокирован'),
-            ('', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Пустое поле - невалидно'),
+            ('', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Пустое поле - невалидно/ввод заблокирован'),
         ]
+
+    def get_test_cases_email(self):
+        """Получить тестовые кейсы для email """
+        return [
+            #(email, ожидаемая_ошибка, описание)
+            ('drSVhsr1234@rgeg.com', None, 'валидно'),
+            ('1234@5464.423', None, 'валидно'),
+            ('seDSg@dsef.com', None, 'валидно'),
+            ('seDSgdsefcom', 'Значение «E-mail» не является правильным email адресом.', 'невалидно'),
+            ('пвыпкПвкрп@ккк.ру', 'Значение «E-mail» не является правильным email адресом.', 'невалидно'),
+            ('$@%&#@', 'Значение «E-mail» не является правильным email адресом.', 'невалидно'),
+            ('', 'Необходимо заполнить «E-mail».', 'невалидно'),
+    ]
+
+    def get_test_cases_with_existing_phone_and_email(self):
+        self.surname_input.fill(fake_ru.last_name())
+        self.first_name_input.fill(fake_ru.first_name())
+        self.middle_name_input.fill(fake_ru.middle_name())
+        birth_date = fake_ru.date_of_birth(minimum_age=18, maximum_age=65)
+        birth_date_str = birth_date.strftime('%d.%m.%Y')
+        self.date_of_birth_input.fill(birth_date_str)
+        self.mobile_phone_input.fill('9065123643')
+        self.email_input.fill('sffs@gsffgd.ff')
+        self.password_input.fill('123456')
+        self.repeat_the_password_input.fill('123456')
+
+    def generate_test_cases(self):
+        self.surname_input.fill(fake_ru.last_name())
+        self.first_name_input.fill(fake_ru.first_name())
+        self.middle_name_input.fill(fake_ru.middle_name())
+        birth_date = fake_ru.date_of_birth(minimum_age=18, maximum_age=65)
+        birth_date_str = birth_date.strftime('%d.%m.%Y')
+        self.date_of_birth_input.fill(birth_date_str)
+        self.mobile_phone_input.fill(f'9 {fake_ru.phone_number()}')
+        #self.mobile_phone_input.fill(f'9 {fake_ru.msisdn()}')
+        self.email_input.fill(fake_ru.email())
+        self.password_input.fill('123456')
+        self.repeat_the_password_input.fill('123456')

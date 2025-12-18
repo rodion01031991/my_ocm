@@ -364,10 +364,124 @@ def test_mobile_phone_input(page: Page):
                 assert actual_formatted == expected_error
                 expect(first_step_of_registration_page.error_message_mobile_phone_format).not_to_be_visible()
             else:
-                expect(first_step_of_registration_page.error_message_mobile_phone_format).to_be_visible()
-                actual_error = first_step_of_registration_page.error_message_mobile_phone_format.text_content()
+                if 'ввод заблокирован' in description:
+                    expect(first_step_of_registration_page.error_message_mobile_phone_format).to_be_visible()
+                    expect(first_step_of_registration_page.mobile_phone_input).to_have_value('+7 (')
+                  #  actual_error = first_step_of_registration_page.error_message_mobile_phone_format.text_content()
+
+
+                else:
+                    expect(first_step_of_registration_page.error_message_mobile_phone_format).to_be_visible()
+                  #  actual_error = first_step_of_registration_page.error_message_mobile_phone_format.text_content()
+
+
+def test_print_input_value(page):
+    """
+    Получает и печатает значение из поля ввода
+    """
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    first_step_of_registration_page.open_first_step_of_registration()
+    first_step_of_registration_page.mobile_phone_input.click()
+    first_step_of_registration_page.surname_input.click()
+    # Получаем значение
+    value = first_step_of_registration_page.mobile_phone_input.input_value()
+
+    # Печатаем
+    print(f"Значение поля '{value}'")
+
+    return value
+
+#Проверка поля 'Email' на Шаге 1
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка поля 'Email' на Шаге 1")
+@allure.severity(allure.severity_level.NORMAL)
+def test_mobile_phone_input(page: Page):
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+        # Получаем тестовые кейсы
+        with allure.step('Получаем тестовые кейсы'):
+            test_cases = first_step_of_registration_page.get_test_cases_email()
+    for email, expected_error, description in test_cases:
+        with allure.step(f'Проверка: {description} (ввод: "{email}")'):
+            # Очистить поле
+            first_step_of_registration_page.email_input.clear()
+
+            # Ввести значение
+            if email:
+                first_step_of_registration_page.email_input.fill(email)
+
+            # Убрать фокус для триггера валидации
+            first_step_of_registration_page.trigger_validation()
+
+            # Проверить наличие/отсутствие ошибки
+            if expected_error is None:
+                # Ошибки быть не должно
+                expect(first_step_of_registration_page.error_message_email).not_to_be_visible()
+                expect(first_step_of_registration_page.error_message_email_not_correct).not_to_be_visible()
+
+            else:
+
+                # Определяем, какой тип ошибки ожидается
+
+                if 'Необходимо заполнить «E-mail».' in expected_error:
+
+                    # Это ошибка пустого поля
+
+                    expect(first_step_of_registration_page.error_message_email).to_be_visible()
+
+                    actual_error = first_step_of_registration_page.error_message_email.text_content()
+
+                else:
+
+                    # Это ошибка о неправильном email
+
+                    expect(first_step_of_registration_page.error_message_email_not_correct).to_be_visible()
+
+                    actual_error = first_step_of_registration_page.error_message_email_not_correct.text_content()
 
                 # Проверить текст ошибки
+
                 assert expected_error in actual_error, \
  \
                     f'Текст ошибки не совпадает. Ожидалось: "{expected_error}", получено: "{actual_error}"'
+
+
+#Проверка обработки попытки регистрации с существующими телефоном и e-mail на Шаге 1
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка обработки попытки регистрации с существующими телефоном и e-mail на Шаге 1")
+@allure.severity(allure.severity_level.NORMAL)
+def test_registration_with_existing_phone_and_email (page: Page):
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+    with allure.step('Вставляем тестовые данные в поля '):
+        first_step_of_registration_page.get_test_cases_with_existing_phone_and_email()
+    with allure.step('Жмем кнопку "Далее"'):
+        first_step_of_registration_page.click_next_step_button()
+    with allure.step('Проверяем сообщения об ошибках'):
+        expect(first_step_of_registration_page.error_message_phone_is_already_registered_in_the_system).to_be_visible()
+        expect(first_step_of_registration_page.error_message_email_is_already_registered_in_the_system).to_be_visible()
+
+
+#Проверка Успешное заполнение Шага 1 и переход на Шаг 2
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка Успешное заполнение Шага 1 и переход на Шаг 2")
+@allure.severity(allure.severity_level.NORMAL)
+def test_moving_to_the_second_step (page: Page):
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+    with allure.step('Генерируем и вставляем данные в поля'):
+        first_step_of_registration_page.generate_test_cases()
+    with allure.step('Жмем кнопку "Далее"'):
+        first_step_of_registration_page.click_next_step_button()
+    with allure.step('Проверяем что перешли на 2 шаг регистрации'):
+        url = first_step_of_registration_page.URL_SECOND_STEP
+        first_step_of_registration_page.page.wait_for_url(url)
