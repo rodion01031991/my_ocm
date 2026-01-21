@@ -216,7 +216,7 @@ class FirstStepOfRegistrationPage(Page):
             ('$@%&#@', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Спецсимвол - невалидно/ввод заблокирован'),
             ('', 'Используйте формат: +7 (9XX) XXX-XX-XX', 'Пустое поле - невалидно/ввод заблокирован'),
         ]
-
+    #Тестовые данные для поля "email"
     def get_test_cases_email(self):
         """Получить тестовые кейсы для email """
         return [
@@ -229,7 +229,7 @@ class FirstStepOfRegistrationPage(Page):
             ('$@%&#@', 'Значение «E-mail» не является правильным email адресом.', 'невалидно'),
             ('', 'Необходимо заполнить «E-mail».', 'невалидно'),
     ]
-
+    #Проверка обработки попытки регистрации с существующими телефоном и e-mail
     def get_test_cases_with_existing_phone_and_email(self):
         self.surname_input.fill(fake_ru.last_name())
         self.first_name_input.fill(fake_ru.first_name())
@@ -241,7 +241,7 @@ class FirstStepOfRegistrationPage(Page):
         self.email_input.fill('sffs@gsffgd.ff')
         self.password_input.fill('123456')
         self.repeat_the_password_input.fill('123456')
-
+    #Генерация данных для Проверка Успешное заполнение Шага 1 и переход на Шаг 2
     def generate_test_cases(self):
         self.surname_input.fill(fake_ru.last_name())
         self.first_name_input.fill(fake_ru.first_name())
@@ -249,8 +249,64 @@ class FirstStepOfRegistrationPage(Page):
         birth_date = fake_ru.date_of_birth(minimum_age=18, maximum_age=65)
         birth_date_str = birth_date.strftime('%d.%m.%Y')
         self.date_of_birth_input.fill(birth_date_str)
-        self.mobile_phone_input.fill(f'9 {fake_ru.phone_number()}')
-        #self.mobile_phone_input.fill(f'9 {fake_ru.msisdn()}')
+        #self.mobile_phone_input.fill(f'9 {fake_ru.phone_number()}')
+        self.mobile_phone_input.fill(f'9 {fake_ru.msisdn()}')
         self.email_input.fill(fake_ru.email())
         self.password_input.fill('123456')
         self.repeat_the_password_input.fill('123456')
+
+    #Вставляем валидные данные в поле "Пароль"
+    def insert_valid_password(self):
+        self.password_input.fill('123!"увупыуsgseRF')
+
+    # Проверка что не отоброжаются алерты о "Паролях"
+    def checking_alerts_for_the_password_field (self):
+        expect(self.error_message_password).not_to_be_visible()
+        expect(self.error_message_repeat_the_password).not_to_be_visible()
+        expect(self.error_message_small_password).not_to_be_visible()
+        expect(self.error_message_small_repeat_the_password).not_to_be_visible()
+        expect(self.error_message_dont_match_password).not_to_be_visible()
+
+    # Очистка поля "Пароль"
+    def clearing_the_password_field (self):
+        self.password_input.clear()
+
+    #Проверка алерта "Необходимо заполнить «Пароль»."
+    def checking_alerts_for_the_password_field_empty (self):
+        expect(self.error_message_password).to_be_visible()
+
+    # Вставляем валидные данные в поле "Повторите пароль"
+    def insert_valid_repeat_the_password(self):
+        self.repeat_the_password_input.fill('123!"увупыуsgseRF')
+
+    # Очистка поля "Повторите пароль"
+    def clearing_the_repeat_the_password_field(self):
+        self.repeat_the_password_input.clear()
+
+    # Проверка алерта "Необходимо заполнить «Пароль»."
+    def checking_alerts_for_the_repeat_the_password_field_empty(self):
+        expect(self.error_message_repeat_the_password).to_be_visible()
+
+    # Вставляем не валидные данные в поле "Пароль"
+    def insert_not_valid_password(self):
+        self.password_input.fill('123!')
+
+    # Проверка алерта "Значение «Пароль» должно содержать минимум 6 символов."
+    def checking_alerts_for_the_password_field_small(self):
+        expect(self.error_message_small_password).to_be_visible()
+
+    # Вставляем не валидные данные в поле "Повторите пароль"
+    def insert_not_valid_the_repeat_the_password(self):
+        self.repeat_the_password_input.fill('123!')
+
+    # Проверка алерта "Значение «Пароль» должно содержать минимум 6 символов."
+    def checking_alerts_for_the_repeat_the_password_field_small(self):
+        expect(self.error_message_small_repeat_the_password).to_be_visible()
+
+    # Вставляем валидные данные в поле "Повторите пароль" отличающиеся от того что вставили в поле "Пароль"
+    def insert_other_valid_repeat_the_password(self):
+        self.repeat_the_password_input.fill('123!"увупыуsgseGG')
+
+    # Проверка алерта "Пароли должны совпадать"
+    def checking_alerts_for_dont_match_password(self):
+        expect(self.error_message_dont_match_password).to_be_visible()

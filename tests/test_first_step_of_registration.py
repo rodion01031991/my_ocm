@@ -485,3 +485,75 @@ def test_moving_to_the_second_step (page: Page):
     with allure.step('Проверяем что перешли на 2 шаг регистрации'):
         url = first_step_of_registration_page.URL_SECOND_STEP
         first_step_of_registration_page.page.wait_for_url(url)
+
+
+#Проверка полей "Пароль" и "Повторите пароль" на Шаге 1
+@allure.epic("Веб-приложение OCM")
+@allure.feature("Регистрация пользователя")
+@allure.story("Проверка валидации первой страницы регистрации")
+@allure.title("Проверка полей 'Пароль' и 'Повторите пароль' на Шаге 1")
+@allure.severity(allure.severity_level.NORMAL)
+def test_checking_the_password_and_repeat_password (page: Page):
+    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    with allure.step('Открыть страницу первого шага регистрации'):
+        first_step_of_registration_page.open_first_step_of_registration()
+    with allure.step('Вставляем валидные данные в поле "Пароль"'):
+        first_step_of_registration_page.insert_valid_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем что не отоброжаются алерты под полем "Пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_password_field()
+    with allure.step('Вставляем валидные данные в поле "Повторите пароль"'):
+        first_step_of_registration_page.insert_valid_repeat_the_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем что не отоброжаются алерты под полем "Повторите пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_password_field()
+    with allure.step('Очищаем поле "Пароль"'):
+        first_step_of_registration_page.clearing_the_password_field()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем отоброжение алерта под полем "Пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_password_field_empty()
+    with allure.step('Очищаем поле "Повторите пароль"'):
+        first_step_of_registration_page.clearing_the_repeat_the_password_field()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем отоброжение алерта под полем "Повторите пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_repeat_the_password_field_empty()
+    with allure.step('Вставляем не валидные данные в поле "Пароль"'):
+        first_step_of_registration_page.insert_not_valid_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем отоброжение алерта под полем "Пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_password_field_small()
+    with allure.step('Вставляем не валидные данные в поле "Повторите пароль"'):
+        first_step_of_registration_page.insert_not_valid_the_repeat_the_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем отоброжение алерта под полем "Повторите пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_repeat_the_password_field_small()
+    with allure.step('Вставляем одинаковые данные в поле "Пароль" и "Повторите пароль"'):
+        first_step_of_registration_page.insert_valid_password()
+        first_step_of_registration_page.insert_valid_repeat_the_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем что не отоброжаются алерты под полеми "Пароль" и "Повторите пароль"'):
+        first_step_of_registration_page.checking_alerts_for_the_password_field()
+    with allure.step('Вставляем разные данные в поле "Пароль" и "Повторите пароль"'):
+        first_step_of_registration_page.insert_valid_password()
+        first_step_of_registration_page.insert_other_valid_repeat_the_password()
+    with allure.step('Кликаем на другое поле для срабатывания валидации'):
+        first_step_of_registration_page.trigger_validation()
+    with allure.step('Проверяем отоброжение алерта под полем "Повторите пароль"'):
+        first_step_of_registration_page.checking_alerts_for_dont_match_password()
+
+
+
+
+
+
+
+
+
+

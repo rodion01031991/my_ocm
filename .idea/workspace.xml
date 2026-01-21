@@ -48,11 +48,13 @@
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Python tests.Python tests for pages.first_step_of_registration_page.test_dfd_.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_date_of_birth_input.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_empty_fields_simple.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_format_mobile_namber.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_middle_name_input.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_mobile_phone_input.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_moving_to_the_second_step.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_name_input.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for tests.test_first_step_of_registration.test_print_input_value.executor&quot;: &quot;Run&quot;,
@@ -77,8 +79,8 @@
       <recent name="C:\Users\rchernyshov\PycharmProjects\PythonProjectOCM" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email">
-    <configuration name="Python tests for pages.first_step_of_registration_page.test_dfd_" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_select_man_gender">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -89,11 +91,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pages.first_step_of_registration_page.test_dfd_&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_date_of_birth_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_empty_fields_simple" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,11 +106,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_date_of_birth_input&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_empty_fields_simple&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_mobile_phone_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -119,11 +121,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_mobile_phone_input&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_no_middle_name_checkbox&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_print_input_value" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_select_man_gender" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,11 +136,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_print_input_value&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_select_man_gender&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_surname_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,17 +151,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_surname_input&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email" />
-        <item itemvalue="Python tests.Python tests for pages.first_step_of_registration_page.test_dfd_" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_print_input_value" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_mobile_phone_input" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_date_of_birth_input" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_select_man_gender" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_surname_input" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_empty_fields_simple" />
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765443887484</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update">
+      <option name="closed" value="true" />
+      <created>1766066315437</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1766066315437</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
