@@ -397,7 +397,7 @@ def test_print_input_value(page):
 @allure.story("Проверка валидации первой страницы регистрации")
 @allure.title("Проверка поля 'Email' на Шаге 1")
 @allure.severity(allure.severity_level.NORMAL)
-def test_mobile_phone_input(page: Page):
+def test_email_input(page: Page):
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
