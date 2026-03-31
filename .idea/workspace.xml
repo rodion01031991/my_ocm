@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8862a8b-7d20-41cb-bb31-81b0c8618e2e" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/pages/third_step_of_registration_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_third_step_of_registration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +80,7 @@
       <recent name="C:\Users\rchernyshov\PycharmProjects\PythonProjectOCM" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password">
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox">
     <configuration name="Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
@@ -123,6 +126,21 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PythonProjectOCM" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_no_middle_name_checkbox&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PythonProjectOCM" />
       <option name="ENV_FILES" value="" />
@@ -138,28 +156,13 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_first_step_of_registration.test_select_man_gender" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PythonProjectOCM" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_first_step_of_registration.test_select_man_gender&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_no_middle_name_checkbox" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_checking_the_password_and_repeat_password" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_moving_to_the_second_step" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_registration_with_existing_phone_and_email" />
         <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_mobile_phone_input" />
-        <item itemvalue="Python tests.Python tests for tests.test_first_step_of_registration.test_select_man_gender" />
       </list>
     </recent_temporary>
   </component>
@@ -306,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768999718106</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update">
+      <option name="closed" value="true" />
+      <created>1774422543957</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1774422543957</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
