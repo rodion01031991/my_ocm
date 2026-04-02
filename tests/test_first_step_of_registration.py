@@ -2,7 +2,7 @@ import pytest
 import allure
 from playwright.sync_api import Page, expect
 from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
-
+from pages.common_functions_page import CommonFunctionsPage
 
 @allure.epic("Веб-приложение OCM")
 @allure.feature("Регистрация пользователя")
@@ -374,23 +374,6 @@ def test_mobile_phone_input(page: Page):
                     expect(first_step_of_registration_page.error_message_mobile_phone_format).to_be_visible()
                   #  actual_error = first_step_of_registration_page.error_message_mobile_phone_format.text_content()
 
-
-def test_print_input_value(page):
-    """
-    Получает и печатает значение из поля ввода
-    """
-    first_step_of_registration_page = FirstStepOfRegistrationPage(page)
-    first_step_of_registration_page.open_first_step_of_registration()
-    first_step_of_registration_page.mobile_phone_input.click()
-    first_step_of_registration_page.surname_input.click()
-    # Получаем значение
-    value = first_step_of_registration_page.mobile_phone_input.input_value()
-
-    # Печатаем
-    print(f"Значение поля '{value}'")
-
-    return value
-
 #Проверка поля 'Email' на Шаге 1
 @allure.epic("Веб-приложение OCM")
 @allure.feature("Регистрация пользователя")
@@ -476,10 +459,12 @@ def test_registration_with_existing_phone_and_email (page: Page):
 @allure.severity(allure.severity_level.NORMAL)
 def test_moving_to_the_second_step (page: Page):
     first_step_of_registration_page = FirstStepOfRegistrationPage(page)
+    common_functions_page = CommonFunctionsPage(page)
     with allure.step('Открыть страницу первого шага регистрации'):
         first_step_of_registration_page.open_first_step_of_registration()
     with allure.step('Генерируем и вставляем данные в поля'):
-        first_step_of_registration_page.generate_test_cases()
+        #first_step_of_registration_page.generate_test_cases()
+        common_functions_page.generate_test_cases_first_step_of_registration()
     with allure.step('Жмем кнопку "Далее"'):
         first_step_of_registration_page.click_next_step_button()
     with allure.step('Проверяем что перешли на 2 шаг регистрации'):
