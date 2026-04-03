@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect
+import pytest
 import allure
 from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
 from faker import Faker
@@ -11,7 +12,7 @@ class CommonFunctionsPage(Page):
     URL_THIRD_STEP = 'https://rc.dev.oneclickmoney.ru/registration/third/'
     def __init__(self, page: Page):
         self.page = page
-        # Поля ввода первого шага регистрации
+        # Поля ввода 1 шага регистрации
         self.surname_input = page.locator('#usermodel-last_name')
         self.first_name_input = page.locator('#usermodel-first_name')
         self.middle_name_input = page.locator('#usermodel-middle_name')
@@ -21,7 +22,7 @@ class CommonFunctionsPage(Page):
         self.password_input = page.locator('#usermodel-password')
         self.repeat_the_password_input = page.locator('#usermodel-confirm_password')
         self.next_step_button = page.locator('#next-step-button')
-        # Поля ввода второго шага регистрации
+        # Поля ввода 2 шага регистрации
         self.pass_num_input = page.locator('#usermodel-passport_number')
         self.pass_code_input = page.locator('#usermodel-passport_issuer_code')
         self.pass_name_input = page.locator('#usermodel-passport_issuer_name')
@@ -32,6 +33,13 @@ class CommonFunctionsPage(Page):
         self.street_input = page.locator('#usermodel-street')
         self.house_num_input = page.locator('#usermodel-house_number')
         self.next_step_button_second = page.locator('.registration-two__submit')
+
+        # Поля ввода 3 шага регистрации
+        # Поле ввода "Место работы"
+        self.place_of_work_input = page.locator('#usermodel-work_place')
+        # Поле ввода "Текущий платеж по ипотеке, кредитам (0 - если нет)"
+        self.family_outgo_input = page.locator('#usermodel-family_outgo')
+
 
   #Генерация данных для первого шага регистрации
     def generate_test_cases_first_step_of_registration(self):

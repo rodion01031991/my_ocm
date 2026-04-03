@@ -1,5 +1,4 @@
 import pytest
-
 from pages.common_functions_page import CommonFunctionsPage
 from pages.login_page import LoginPage
 from pages.first_step_of_registration_page import FirstStepOfRegistrationPage
