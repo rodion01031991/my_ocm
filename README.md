@@ -16,3 +16,4 @@ my_ocm/<br>
 ├── conftest.py ㅤㅤㅤㅤㅤㅤㅤㅤㅤ# общие фикстуры <br>
 ├──requirements.txt ㅤㅤㅤㅤㅤㅤ # зависимости проекта<br>
 
+Запуск тестов для 3 страницы python -m pytest tests/test_third_step_of_registration.py

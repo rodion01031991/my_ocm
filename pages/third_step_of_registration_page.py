@@ -1,5 +1,4 @@
 from playwright.sync_api import Page, expect
-from pages.common_functions_page import CommonFunctionsPage
 from faker import Faker
 fake_ru = Faker('ru_RU')
 fake_en = Faker('en_US')
@@ -46,8 +45,26 @@ class ThirdStepOfRegistrationPage(Page):
         self.checkbox_credit_history_mfo_no = page.locator('div#check_creditHistoryMFO_no')
         # Чекбокс "Настоящим, я даю согласие на подключение сервиса «Автоплатеж»"
         self.checkbox_autopayments = page.locator('div#check_recurrent')
-        # Алерт Необходимо заполнить «Место работы».
+        # Алерт "Необходимо заполнить «Место работы»."
         self.error_message_necessary_fill_place_of_work = page.locator('.error-page-field:has-text("Необходимо заполнить «Место работы».")')
+        # Алерт "Необходимо заполнить «Адрес места работы»."
+        self.error_message_necessary_fill_address_place_of_work = page.locator('.error-page-field:has-text("Необходимо заполнить «Адрес места работы».")')
+        # Алерт "Используйте формат: +7 (XXX) XXX-XX-XX" \\(Рабочий телефон)
+        self.error_message_work_phone_format = page.locator('.error-page-field:has-text("Используйте формат: +7 (XXX) XXX-XX-XX")')
+        # Алерт "Необходимо заполнить «Среднемесячный доход (руб.)»."
+        self.error_message_fill_averagemonthly_income = page.locator('.error-page-field:has-text("Необходимо заполнить «Среднемесячный доход (руб.)».")')
+        # Алерт "Значение «Среднемесячный доход (руб.)» должно быть не меньше 0."
+        self.error_message_averagemonthly_must_be_at_least_zero = page.locator('.error-page-field:has-text("Значение «Среднемесячный доход (руб.)» должно быть не меньше 0.")')
+        # Алерт "Значение «Среднемесячный доход (руб.)» не должно превышать 1000000."
+        self.error_message_averagemonthly_should_not_exceed_millions  = page.locator('.error-page-field:has-text("Значение «Среднемесячный доход (руб.)» не должно превышать 1000000.")')
+        # Алерт "Необходимо заполнить «Текущий платеж по ипотеке, кредитам (0 - если нет)»."
+        self.error_message_fill_mortgage_loan_payments_income = page.locator('.error-page-field:has-text("Необходимо заполнить «Текущий платеж по ипотеке, кредитам (0 - если нет)».")')
+        # Алерт "Значение «Текущий платеж по ипотеке, кредитам (0 - если нет)» должно быть не меньше 0."
+        self.error_message_mortgage_loan_payments_must_be_at_least_zero = page.locator('.error-page-field:has-text("Значение «Текущий платеж по ипотеке, кредитам (0 - если нет)» должно быть не меньше 0.")')
+        # Алерт "Значение «Текущий платеж по ипотеке, кредитам (0 - если нет)» не должно превышать 1000000."
+        self.error_message_mortgage_loan_payments_should_not_exceed_millions = page.locator('.error-page-field:has-text("Значение «Текущий платеж по ипотеке, кредитам (0 - если нет)» не должно превышать 1000000.")')
+        # Алерт "Используйте формат: +7 (XXX) XXX-XX-XX" \\(Дополнительный телефон)
+        self.error_message_cohabitor_phone_format = page.locator('.error-page-field:has-text("Используйте формат: +7 (XXX) XXX-XX-XX")')
 
     # Проставить чекбокс "Официально не трудоустроен"
     def check_checkbox_is_workless(self):
@@ -84,18 +101,7 @@ class ThirdStepOfRegistrationPage(Page):
         expect(self.checkbox_credit_history_mfo_no).to_be_visible()
         expect(self.checkbox_autopayments).to_be_visible()
 
-    '''# Убрать фокус для триггера валидации
-    def trigger_validation_third_step(self):
-        """Снять фокус с поля для триггера валидации"""
-        # Проверяем активно ли Поле ввода "Текущий платеж по ипотеке, кредитам (0 - если нет)"
-        if self.family_outgo_input.evaluate('element => document.activeElement === element'):
-            # Если поле "Текущий платеж" активно, кликаем на поле "Место работы"
-            self.place_of_work_input.click()
-        else:
-            # Если поле "Текущий платеж" не активно, кликаем на него
-            self.family_outgo_input.click()
-        # Задержка для срабатывания валидации
-        self.page.wait_for_timeout(300)'''
+
 
 
 
